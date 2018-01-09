@@ -23,25 +23,31 @@ int main()
 	system("pause");
 }
 
-int gap(char* s, char* t)
+int gap(char* s, char* what)
 {
 	int leg = -1;
 	int i = 0;
 	char* str=nullptr, *kodem ;
-	while (*t)
+	char* t;
+	do
 	{
-		kodem = str;
-		str = strchr(s, *t);
-		if (str == nullptr)
+		t = what;
+		while (*t)
 		{
-			return -1;
+			kodem = str;
+			str = strchr(s, *t);
+			//if (str == nullptr)
+			//{
+			//	return -1;
+			//}
+			if (kodem)
+			{
+				leg = (str - kodem - 1);
+			}
+			t++;
 		}
-		if (!kodem)
-		{
-			leg = (str - kodem);
-		}
-		t++;
-	}
+		++s;
+	} while (*s);
 	return leg;
 }
 int mingap(char* sentence, char* what)
